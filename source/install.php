@@ -72,8 +72,7 @@ class SimpleFormBuilder{
         message_after_submit VARCHAR(1100) NOT NULL, 
         redirect_after_submit ENUM('0','1') DEFAULT '0', 
         redirect_to_url VARCHAR(1100) NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         ) $charset_collate;";
      
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
@@ -100,7 +99,6 @@ class SimpleFormBuilder{
         options text NULL,
         form_id int(11) NOT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         CONSTRAINT fk_sfb_form_field FOREIGN KEY (form_id) REFERENCES {$forms_table_name}(id) ON DELETE CASCADE
         ) $charset_collate;";
      
@@ -121,7 +119,6 @@ class SimpleFormBuilder{
         $sql = "CREATE TABLE " . $table_name . "(id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
         form_id int(11) NOT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         CONSTRAINT fk_sfb_form_submission FOREIGN KEY (form_id) REFERENCES {$forms_table_name}(id) ON DELETE CASCADE
         ) $charset_collate;";
      
@@ -136,7 +133,7 @@ class SimpleFormBuilder{
         $charset_collate = $wpdb->get_charset_collate();
         
         $table_name = $wpdb->prefix . 'sfb_values';
-        $fields_table_name =  $wpdb->prefix . 'sfb_forms';
+        $fields_table_name =  $wpdb->prefix . 'sfb_fields';
         $submissions_table_name =  $wpdb->prefix . 'sfb_submissions';
     
         $sql = "CREATE TABLE " . $table_name . "(id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
@@ -144,7 +141,6 @@ class SimpleFormBuilder{
         field_id int(11) NOT NULL,
         submission_id int(11) NOT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         CONSTRAINT fk_sfb_field_value FOREIGN KEY (field_id) REFERENCES {$fields_table_name}(id) ON DELETE CASCADE,
         CONSTRAINT fk_sfb_submission_value FOREIGN KEY (submission_id) REFERENCES {$submissions_table_name}(id) ON DELETE CASCADE
         ) $charset_collate;";
