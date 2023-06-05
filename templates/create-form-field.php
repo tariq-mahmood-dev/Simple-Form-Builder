@@ -1,0 +1,91 @@
+<?php
+    $form_id = $_GET['form_id'];
+
+    global $wpdb;
+
+    $form = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}sfb_forms WHERE id='$form_id'");
+ 
+
+    $types = [
+        'text' => "Text",
+        'email' => "Email",
+        'url' => "URL",
+        'date' => "Date",
+        'phone' => "Phone",
+        'file' => "File Upload",
+        'image' => "Image Upload",
+        'textarea' => "Textarea",
+        'select' => "Select",
+        'checkbox' => 'Checkbox',
+        'radio' => 'Radio',
+        'select-multiple' => "Select Multiple",
+        'hidden' => 'Hidden',
+        'readonly' => 'Readonly'
+    ];
+?>
+
+<div class="sfb">
+    <div class="container-fluid mt-5">
+        <h3 class="mb-3"><a href="/wp-admin/admin.php?page=sfb-form-fields&form_id=<?php echo $form_id; ?>" class="btn btn-dark btn-sm"><span class="dashicons dashicons-arrow-left-alt"></span></a>&nbsp;Create Field  - <?php echo $form->form_name; ?></h3>
+        <form method="post" action="">
+            <div class="row">
+                <div class="col">
+                    <div class="mb-3">
+                        <label class="form-label" for="field_type">Type</label>
+                        <select name="field_type" id="field_type" class="form-select" required>
+                            <?php foreach($types as $key=>$val) : ?>
+                                <option value="<?php echo $key; ?>"><?php echo $val; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-3">
+                        <label class="form-label" for="label">Label</label>
+                        <input type="text" name="label" id="label" class="form-control" required />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-3">
+                        <label class="form-label" for="is_required">Required</label>
+                        <select name="is_required" id="is_required" class="form-select" required>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-3">
+                        <label class="form-label" for="default_value">Default Value</label>
+                        <input type="text" name="default_value" id="default_value" class="form-control" />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-3">
+                        <label class="form-label" for="column_width">Column Width</label>
+                        <select name="column_width" id="column_width" class="form-select" required>
+                            <?php for($i=1; $i<13; $i++) : ?>
+                                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                            <?php endfor; ?>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="mb-3">
+                        <label class="form-label" for="options">Options</label>
+                        <textarea class="form-control" name="options" id="options"></textarea>
+                        <p class="help-block text-dark">Comma seperated options for radio,checkbox, select</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="hidden" name="form_id" value="<?php echo $form->id; ?>"/>
+                    <input type="submit" name="new-field" class="btn btn-dark w-100" value="Create" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+.sfb select{
+    max-width: none;
+}
+.sfb .cursor-move{
+    cursor: -webkit-grab; cursor: grab;
+}
+.sfb .g-recaptcha>div{
+    display: block;
+    margin: 0 auto;
+}
+.sfb .top-margined{
+    display: inline-block;
+    margin-top: 5px;
+}
