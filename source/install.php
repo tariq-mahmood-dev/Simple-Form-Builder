@@ -23,9 +23,9 @@ class SimpleFormBuilder{
 
         $wpdb->query(
             $wpdb->prepare( 
-                "INSERT INTO $sfb_forms_table_name(form_name, email_to, send_email_alerts,submit_button_text,submit_button_class, use_recaptcha, google_recaptcha_key, google_recaptcha_secret, message_after_submit, redirect_after_submit, redirect_to_url )
-                VALUES ( %s, %s, %s, %s, %s, %s,  %s, %s, %s, %s, %s)",
-                array( "Test Form", "", "0", "Submit", "btn btn-primary w-100", "0", "","" ,"Thank you for you submission, our representative will contact you soon!", "0", "" )
+                "INSERT INTO $sfb_forms_table_name(form_name, email_from, email_to, send_email_alerts,submit_button_text,submit_button_class, use_recaptcha, google_recaptcha_key, google_recaptcha_secret, message_after_submit, redirect_after_submit, redirect_to_url )
+                VALUES ( %s, %s, %s, %s, %s, %s,  %s, %s, %s, %s, %s,%s)",
+                array( "Test Form", "no-reply@".sfb_get_domain_name(),"", "0", "Submit", "btn btn-primary w-100", "0", "","" ,"Thank you for you submission, our representative will contact you soon!", "0", "" )
             )
         );
         $form_id =  $wpdb->insert_id;
@@ -63,6 +63,7 @@ class SimpleFormBuilder{
         $sql = "CREATE TABLE " . $table_name . "(id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY, 
         form_name VARCHAR(250) NOT NULL, 
         email_to VARCHAR(1100) NOT NULL, 
+        email_from VARCHAR(250) NULL, 
         send_email_alerts ENUM('0','1') DEFAULT '1', 
         submit_button_text VARCHAR(250) NOT NULL, 
         submit_button_class VARCHAR(250) NULL, 

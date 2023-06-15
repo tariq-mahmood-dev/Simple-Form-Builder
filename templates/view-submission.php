@@ -7,6 +7,7 @@ global $wpdb;
 
 $fields = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}sfb_fields WHERE form_id={$form_id} order by sort_order");
 $form = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}sfb_forms WHERE id={$form_id}");
+$submission = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}sfb_submissions WHERE id={$submission_id}");
 
 ?>
 
@@ -29,6 +30,10 @@ $form = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}sfb_forms WHERE id={$form_i
                                 <td><?= sfb_get_field_value($submission_id,$field->id); ?></td>
                             </tr>
                         <?php endforeach; ?>
+                        <tr>
+                            <td>Submitted At</td>
+                            <td><?= $submission->created_at ?></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

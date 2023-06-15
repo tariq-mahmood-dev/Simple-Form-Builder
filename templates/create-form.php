@@ -19,7 +19,15 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-12" id="email_to_container">
+            </div>
+            <div class="row"  id="email_to_container" style="display:none">
+                 <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label" for="email_from">Email From</label>
+                        <input type="email" name="email_from" id="email_from" class="form-control" value="no-reply@<?= sfb_get_domain_name(); ?>" />
+                    </div>
+                </div>
+                <div class="col-md-6">
                     <div class="mb-3">
                         <label class="form-label" for="email_to">Email To</label>
                         <input type="text" name="email_to" id="email_to" class="form-control" />
@@ -36,7 +44,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="mb-3">
-                        <label class="form-label" for="submit_button_class">Submit Button Class</label>
+                        <label class="form-label" for="submit_button_class">Submit Button Class <a target="_blank" href="https://getbootstrap.com/docs/5.3/components/buttons/">See Button Classes</a></label>
                         <input type="text" name="submit_button_class" id="submit_button_class" class="form-control" value="btn btn-primary w-100" required />
                     </div>
                 </div>
@@ -50,7 +58,7 @@
                     </div>
                 </div>
             </div>    
-            <div class="row" id="google_recaptcha_key_container">
+            <div class="row" id="google_recaptcha_key_container" style="display:none">
                 <div class="col-md-12">
                     <div class="alert alert-info" role="alert">
                         <a href="https://www.google.com/recaptcha/admin/create" target="_blank">Use V2 captcha</a> with "I'm not a robot" tickbox
@@ -79,7 +87,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-6" id="redirect_to_url_container">
+                <div class="col-md-6" id="redirect_to_url_container" style="display:none">
                     <div class="mb-3">
                         <label class="form-label" for="redirect_to_url">Redirect To URL</label>
                         <input type="url" name="redirect_to_url" id="redirect_to_url" class="form-control" />

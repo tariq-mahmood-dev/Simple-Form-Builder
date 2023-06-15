@@ -26,11 +26,13 @@ function check_and_set_email_to_visibility($)
     {
         $("#email_to_container").show();
         $("#email_to").attr("required","");
+        $("#email_from").attr("required","");
     }
     else 
     {
         $("#email_to_container").hide();
         $("#email_to").removeAttr("required");
+        $("#email_from").removeAttr("required");
     }
 }
 

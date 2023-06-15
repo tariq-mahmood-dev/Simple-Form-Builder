@@ -155,11 +155,14 @@ function sfb_send_email($submission_id,$form)
     global $wpdb;
     $fields = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}sfb_fields WHERE form_id={$form->id} order by sort_order");
 
+    $submission = $wpdb->get_row("SELECT * FROM {$wpdb->prefix}sfb_submissions WHERE id={$submission_id}");
+
     $to = $form->email_to;
     $subject = "New Submission for ".$form->form_name;
 
     $headers = "MIME-Version: 1.0" . "\r\n";
     $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+    $headers .= 'From: '.$form->email_from . "\r\n";
 
 
     $form_data = "";
@@ -168,6 +171,7 @@ function sfb_send_email($submission_id,$form)
     {
         $form_data.= "<tr><td><span style='font-weight:bold;'>".$field->label."</span></td><td>" . sfb_get_field_value($submission_id,$field->id). "</td></tr>";
     }
+    $form_data.= "<tr><td><span style='font-weight:bold;'>Submitted At</span></td><td>" .$submission->created_at. "</td></tr>";
 
     $data = "
     <html>
@@ -200,4 +204,10 @@ function sfb_send_email($submission_id,$form)
     ";
 
     mail($to,$subject,$data,$headers);
+}
+
+function sfb_get_domain_name()
+{
+    $url_parts = parse_url(get_site_url());
+    return $url_parts["host"];
 }

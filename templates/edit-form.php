@@ -26,7 +26,15 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-12" id="email_to_container">
+            </div>
+            <div class="row"  id="email_to_container" <?php if($form->send_email_alerts === '0'): ?> style="display:none" <?php endif; ?>>
+                 <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label" for="email_from">Email From</label>
+                        <input type="email" name="email_from" id="email_from" class="form-control" value="<?php echo $form->email_from; ?>" />
+                    </div>
+                </div>
+                <div class="col-md-6">
                     <div class="mb-3">
                         <label class="form-label" for="email_to">Email To</label>
                         <input type="text" name="email_to" id="email_to" class="form-control" value="<?php echo $form->email_to; ?>"/>
@@ -43,7 +51,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="mb-3">
-                        <label class="form-label" for="submit_button_class">Submit Button Class</label>
+                        <label class="form-label" for="submit_button_class">Submit Button Class <a target="_blank" href="https://getbootstrap.com/docs/5.3/components/buttons/">See Button Classes</a></label>
                         <input type="text" name="submit_button_class" id="submit_button_class" class="form-control" required value="<?php echo $form->submit_button_class; ?>" />
                     </div>
                 </div>
@@ -57,7 +65,7 @@
                     </div>
                 </div>
             </div>    
-            <div class="row" id="google_recaptcha_key_container">
+            <div class="row" id="google_recaptcha_key_container" <?php if($form->use_recaptcha === '0'): ?> style="display:none" <?php endif; ?>>
                 <div class="col-md-12">
                     <div class="alert alert-info" role="alert">
                         <a href="https://www.google.com/recaptcha/admin/create" target="_blank">Use V2 captcha</a> with "I'm not a robot" tickbox
@@ -86,13 +94,13 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-6" id="redirect_to_url_container">
+                <div class="col-md-6" id="redirect_to_url_container" <?php if($form->redirect_after_submit === '0'): ?> style="display:none" <?php endif; ?>>
                     <div class="mb-3">
                         <label class="form-label" for="redirect_to_url">Redirect To URL</label>
                         <input type="url" name="redirect_to_url" id="redirect_to_url" class="form-control" value="<?php echo $form->redirect_to_url; ?>"/>
                     </div>
                 </div>
-                <div class="col-md-6" id="message_after_submit_container">
+                <div class="col-md-6" id="message_after_submit_container" <?php if($form->redirect_after_submit === '1'): ?> style="display:none" <?php endif; ?>>
                     <div class="mb-3">
                         <label class="form-label" for="message_after_submit">Message After Submit</label>
                         <input type="text" name="message_after_submit" id="message_after_submit" class="form-control" value="<?php echo $form->message_after_submit; ?>"/>

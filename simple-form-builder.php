@@ -2,7 +2,7 @@
 
 /*
     Plugin Name: Simple Form Builder
-    Description: A simple form builder, you can see submissions in admin, use google recaptcha V2, uses Bootstrap 5.2.3
+    Description: A simple form builder, you can see submissions in admin, uses google recaptcha V2, uses Bootstrap 5.2.3
     Version: 1.0.0
     Requires at least: 6.2.2
     Requires PHP: 7.4
@@ -13,7 +13,7 @@
 
 define( 'SFB_PATH', dirname( __FILE__ ) );
 define( 'SFB_ITEMS_PER_PAGE', '10');
-define( 'SFB_ASSETS_VERSION', '1.0.11');
+define( 'SFB_ASSETS_VERSION', '1.0.13');
 
 require_once(SFB_PATH.'/source/install.php');
 require_once(SFB_PATH.'/source/register-menu.php');

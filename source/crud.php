@@ -12,9 +12,9 @@ if(isset($_POST['new-form']))
 
     $wpdb->query(
         $wpdb->prepare( 
-            "INSERT INTO $sfb_forms_table_name(form_name, email_to, send_email_alerts,submit_button_text,submit_button_class, use_recaptcha, google_recaptcha_key, google_recaptcha_secret, message_after_submit, redirect_after_submit, redirect_to_url )
-            VALUES ( %s, %s, %s, %s, %s, %s,  %s, %s, %s, %s, %s)",
-            array( $data['form_name'], $data['email_to'], $data['send_email_alerts'], $data['submit_button_text'], $data['submit_button_class'], $data['use_recaptcha'], $data['google_recaptcha_key'],$data['google_recaptcha_secret'] ,$data['message_after_submit'], $data['redirect_after_submit'], $data['redirect_to_url'] )
+            "INSERT INTO $sfb_forms_table_name(form_name, email_from, email_to, send_email_alerts,submit_button_text,submit_button_class, use_recaptcha, google_recaptcha_key, google_recaptcha_secret, message_after_submit, redirect_after_submit, redirect_to_url )
+            VALUES ( %s, %s, %s, %s, %s, %s,  %s, %s, %s, %s, %s, %s)",
+            array( $data['form_name'], $data['email_from'], $data['email_to'], $data['send_email_alerts'], $data['submit_button_text'], $data['submit_button_class'], $data['use_recaptcha'], $data['google_recaptcha_key'],$data['google_recaptcha_secret'] ,$data['message_after_submit'], $data['redirect_after_submit'], $data['redirect_to_url'] )
         )
     );
     header('Location:'. admin_url( '/admin.php?page=sfb' ) );
@@ -26,8 +26,8 @@ if(isset($_POST['update-form']))
 
     $wpdb->query(
         $wpdb->prepare( 
-            "UPDATE {$sfb_forms_table_name}  SET form_name = %s, email_to = %s, send_email_alerts = %s,submit_button_text=%s,submit_button_class=%s, use_recaptcha=%s, google_recaptcha_key=%s, google_recaptcha_secret=%s ,message_after_submit=%s, redirect_after_submit=%s, redirect_to_url=%s where id=%s",
-            array( $data['form_name'], $data['email_to'], $data['send_email_alerts'], $data['submit_button_text'], $data['submit_button_class'], $data['use_recaptcha'], $data['google_recaptcha_key'], $data['google_recaptcha_secret'],$data['message_after_submit'], $data['redirect_after_submit'], $data['redirect_to_url'], $data['form_id']  )
+            "UPDATE {$sfb_forms_table_name}  SET form_name = %s, email_from= %s, email_to = %s, send_email_alerts = %s,submit_button_text=%s,submit_button_class=%s, use_recaptcha=%s, google_recaptcha_key=%s, google_recaptcha_secret=%s ,message_after_submit=%s, redirect_after_submit=%s, redirect_to_url=%s where id=%s",
+            array( $data['form_name'], $data['email_from'], $data['email_to'], $data['send_email_alerts'], $data['submit_button_text'], $data['submit_button_class'], $data['use_recaptcha'], $data['google_recaptcha_key'], $data['google_recaptcha_secret'],$data['message_after_submit'], $data['redirect_after_submit'], $data['redirect_to_url'], $data['form_id']  )
         )
     );
     header('Location:'. admin_url( '/admin.php?page=sfb' ) );
